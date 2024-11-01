@@ -1,4 +1,10 @@
-export default function SearchForm() {
+export default function SearchForm({
+  searchText,
+  setSearchText,
+}: {
+  searchText: string;
+  setSearchText: (text: string) => void;
+}) {
   return (
     <form action="#" className="search">
       <button type="submit">
@@ -10,6 +16,8 @@ export default function SearchForm() {
         type="text"
         required
         placeholder="Find remote developer jobs..."
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
       />
     </form>
   );
