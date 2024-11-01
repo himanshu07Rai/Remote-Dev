@@ -1,23 +1,11 @@
-import { JobItemType } from "../lib/constants";
 import JobListItem from "./JobListItem";
-import Spinner from "./Spinner";
 
-export function JobList({
-  jobItems,
-  isLoading,
-}: {
-  jobItems: JobItemType[];
-  isLoading: boolean;
-}) {
+export function JobList({ jobItems }: { jobItems: unknown[] }) {
   return (
     <ul className="job-list">
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        jobItems.map((jobItem: JobItemType) => (
-          <JobListItem jobItem={jobItem} />
-        ))
-      )}
+      {jobItems.map((jobItem: unknown) => (
+        <JobListItem jobItem={jobItem} />
+      ))}
     </ul>
   );
 }
