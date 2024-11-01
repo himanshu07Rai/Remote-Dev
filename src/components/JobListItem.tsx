@@ -1,17 +1,8 @@
+import { JobItemType } from "../lib/constants";
 import BookmarkIcon from "./BookmarkIcon";
 
-type JobListItemType = {
-  badgeLetters: string;
-  title: string;
-  company: string;
-  date: string;
-  id: number;
-  relevanceScore: number;
-  daysAgo: number;
-};
-
 type JobListItemProps = {
-  jobItem: JobListItemType;
+  jobItem: JobItemType;
 };
 
 export default function JobListItem({ jobItem }: JobListItemProps) {
