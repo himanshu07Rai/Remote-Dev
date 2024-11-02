@@ -1,7 +1,7 @@
 import { useSearchTextContext } from "../utils/hooks/useSearchTextContext";
 
 export default function SearchForm() {
-  const { searchText, handleSearchTextChange } = useSearchTextContext();
+  const { handleSearchTextChange } = useSearchTextContext();
   return (
     <form action="#" className="search">
       <button type="submit">
@@ -13,7 +13,6 @@ export default function SearchForm() {
         type="text"
         required
         placeholder="Find remote developer jobs..."
-        value={searchText}
         onChange={(e) => handleSearchTextChange(e.target.value)}
       />
     </form>

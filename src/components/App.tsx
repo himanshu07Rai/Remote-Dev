@@ -7,7 +7,6 @@ import Logo from "./Logo";
 import BookmarksButton from "./BookmarksButton";
 import Sidebar from "./Sidebar";
 import JobItemContent from "./JobItemContent";
-import JobList from "./JobList";
 import PaginationControls from "./PaginationControls";
 import ResultsCount from "./ResultsCount";
 import SortingControls from "./SortingControls";
