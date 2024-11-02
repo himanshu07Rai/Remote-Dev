@@ -5,14 +5,17 @@ import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import BookmarksContextProvider from "./contexts/BookmarksContextProvider";
+import ActiveIdContextProvider from "./contexts/ActiveIdContextProvider.tsx";
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BookmarksContextProvider>
-        <App />
-        <Toaster />
+        <ActiveIdContextProvider>
+          <App />
+          <Toaster />
+        </ActiveIdContextProvider>
       </BookmarksContextProvider>
     </QueryClientProvider>
   </React.StrictMode>
