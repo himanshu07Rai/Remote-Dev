@@ -250,6 +250,7 @@ body::-webkit-scrollbar {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 140px;
 
   scrollbar-color: #cacdd0 #ffffff; /* Firefox */
   scrollbar-width: thin; /* Firefox */
@@ -281,8 +282,6 @@ body::-webkit-scrollbar {
 }
 
 .bookmarks-popover {
-  /* visibility: hidden; */
-  /* opacity: 0; */
   background-color: #fff;
   min-height: 76px;
   min-width: 340px;
