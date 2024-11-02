@@ -5,6 +5,7 @@ export const useFetchWithAbort = (searchText: string) => {
     const [data, setData] = useState<JobItemType[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const totalResults = data.length
   
     useEffect(() => {
       if(!searchText) return;
@@ -30,7 +31,7 @@ export const useFetchWithAbort = (searchText: string) => {
       };
     }, [searchText]);
   
-    return [data, loading, error ] as const;
+    return {data, loading, error, totalResults } as const;
   };
 
   
@@ -72,4 +73,17 @@ export const useJobItem = (id: number|null) => {
       });
   }, [id]);
   return [jobItem, loading, error] as const
+}
+
+export const useDebounce = <T>(value: T, delay = 500):T => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+  return debouncedValue;
 }
