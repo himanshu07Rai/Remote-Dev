@@ -14,14 +14,16 @@ import ResultsCount from "./ResultsCount";
 import SortingControls from "./SortingControls";
 import { useDebounce, useJobItems } from "../utils/hooks";
 import { JOBS_PER_PAGE } from "../utils/constants";
+import { SortingType, PaginationType } from "../utils/types";
 
 function App() {
   const [searchText, setSearchText] = useState("");
   const debouncedSearchText = useDebounce(searchText, 250);
   const { jobItems, loading } = useJobItems(debouncedSearchText);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sorting, setSorting] = useState<SortingType>("relevant");
 
-  const handlePageChange = (direction: string) => {
+  const handlePageChange = (direction: PaginationType) => {
     if (direction === "next") {
       setCurrentPage(currentPage + 1);
     } else if (direction === "previous") {
@@ -33,10 +35,23 @@ function App() {
 
   const totalPages = jobItemsLength / JOBS_PER_PAGE;
 
-  const slicedJobItems = jobItems?.slice(
+  const sortedJobItems = [...(jobItems || [])].sort((a, b) => {
+    if (sorting === "recent") {
+      return a.daysAgo - b.daysAgo;
+    } else {
+      return b.relevanceScore - a.relevanceScore;
+    }
+  });
+
+  const slicedJobItems = sortedJobItems?.slice(
     (currentPage - 1) * JOBS_PER_PAGE,
     currentPage * JOBS_PER_PAGE
   );
+
+  const handleSorting = (sorting: SortingType) => {
+    setCurrentPage(1);
+    setSorting(sorting);
+  };
 
   return (
     <>
@@ -55,7 +70,10 @@ function App() {
           <Sidebar>
             <div className="sidebar__top">
               <ResultsCount resultsCount={jobItemsLength} />
-              <SortingControls />
+              <SortingControls
+                handleSorting={handleSorting}
+                sorting={sorting}
+              />
             </div>
             <JobList jobItems={slicedJobItems || []} isLoading={loading} />
             <PaginationControls

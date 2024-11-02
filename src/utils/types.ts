@@ -29,3 +29,6 @@ export type JobItemType = {
   export type JobItemApiResponse = {
     jobItem: JobItemDetailsType;
   };
+
+  export type SortingType = "recent" | "relevant";
+  export type PaginationType = "previous" | "next";
