@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-const URL = "https://bytegrad.com/course-assets/projects/rmtdev/api/data";
+import { JobItemDetailsType, JobItemType } from "./types";
+import { BASE_URL } from "./constants";
 export const useFetchWithAbort = (searchText: string) => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<JobItemType[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
   
@@ -10,10 +11,10 @@ export const useFetchWithAbort = (searchText: string) => {
       setLoading(true);
       const controller = new AbortController();
       const signal = controller.signal;
-      fetch(`${URL}?search=${searchText}`, { signal })
+      fetch(`${BASE_URL}?search=${searchText}`, { signal })
         .then((response) => response.json())
-        .then((data) => {
-          setData(data.jobItems);
+        .then((data_) => {
+          setData(data_.jobItems);
         })
         .catch((error) => {
           setError(error.message);
@@ -29,5 +30,46 @@ export const useFetchWithAbort = (searchText: string) => {
       };
     }, [searchText]);
   
-    return { data, loading, error };
+    return [data, loading, error ] as const;
   };
+
+  
+
+export const useActiveId = ()=>{
+  const [activeId, setActiveId] = useState<number | null>(null);
+  const handleHashChange = () => {
+    const id = parseInt(window.location.hash.slice(1));
+   setActiveId(id)
+  };
+  useEffect(() => {
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+  return activeId;
+}
+
+export const useJobItem = (id: number|null) => {
+  const [jobItem, setJobItem] = useState<JobItemDetailsType | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    if (!id) return;
+    setLoading(true);
+    fetch(`${BASE_URL}/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setJobItem(data.jobItem);
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.error("Error:", error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [id]);
+  return [jobItem, loading, error] as const
+}

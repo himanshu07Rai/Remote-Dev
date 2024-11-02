@@ -1,4 +1,4 @@
-import { JobItemType } from "../lib/constants";
+import { JobItemType } from "../lib/types";
 import JobListItem from "./JobListItem";
 import Spinner from "./Spinner";
 
@@ -15,7 +15,7 @@ export function JobList({
         <Spinner />
       ) : (
         jobItems.map((jobItem: JobItemType) => (
-          <JobListItem jobItem={jobItem} />
+          <JobListItem key={jobItem.id} jobItem={jobItem} />
         ))
       )}
     </ul>

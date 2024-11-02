@@ -17,7 +17,7 @@ import { useFetchWithAbort } from "../lib/hooks";
 function App() {
   const [searchText, setSearchText] = useState("");
 
-  const { data, loading } = useFetchWithAbort(searchText);
+  const [data, loading] = useFetchWithAbort(searchText);
 
   return (
     <>

@@ -1,9 +1,1 @@
-export type JobItemType = {
-    badgeLetters: string;
-    title: string;
-    company: string;
-    date: string;
-    id: number;
-    relevanceScore: number;
-    daysAgo: number;
-  };
+export const BASE_URL="https://bytegrad.com/course-assets/projects/rmtdev/api/data"

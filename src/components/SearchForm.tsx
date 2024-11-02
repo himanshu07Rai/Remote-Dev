@@ -1,10 +1,12 @@
+type SearchFormProps = {
+  searchText: string;
+  setSearchText: (text: string) => void;
+};
+
 export default function SearchForm({
   searchText,
   setSearchText,
-}: {
-  searchText: string;
-  setSearchText: (text: string) => void;
-}) {
+}: SearchFormProps) {
   return (
     <form action="#" className="search">
       <button type="submit">
