@@ -1,5 +1,5 @@
-import { useActiveId, useJobItem } from "../lib/hooks";
-import { JobItemDetailsType } from "../lib/types";
+import { useActiveId, useJobItem } from "../utils/hooks";
+import { JobItemDetailsType } from "../utils/types";
 import BookmarkIcon from "./BookmarkIcon";
 import Spinner from "./Spinner";
 
@@ -9,19 +9,13 @@ export default function JobItemContent() {
   return loading ? (
     <LoadingJobContent />
   ) : jobItem ? (
-    <JobContent jobItem={jobItem} loading={loading} />
+    <JobContent jobItem={jobItem} />
   ) : (
     <EmptyJobContent />
   );
 }
 
-function JobContent({
-  jobItem,
-  loading,
-}: {
-  jobItem: JobItemDetailsType;
-  loading: boolean;
-}) {
+function JobContent({ jobItem }: { jobItem: JobItemDetailsType }) {
   return (
     <section className="job-details">
       <div>

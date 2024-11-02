@@ -1,5 +1,5 @@
-import { useActiveId } from "../lib/hooks";
-import { JobItemType } from "../lib/types";
+import { useActiveId } from "../utils/hooks";
+import { JobItemType } from "../utils/types";
 import JobListItem from "./JobListItem";
 import Spinner from "./Spinner";
 
