@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 import { BASE_URL } from "../constants";
 import { JobItemsFetchApiResponse } from "../types";
 
@@ -51,7 +52,7 @@ export const useJobItems = (searchText: string) => {
     retry: false,
     enabled: !!searchText,
     onError: (error: Error) => {
-      console.error('Error:', error.message);
+      toast(error.message)
     },
   }
   );

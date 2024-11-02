@@ -1,6 +1,7 @@
 import {
   useQuery,
 } from '@tanstack/react-query'
+import toast from 'react-hot-toast'
 
 import { JobItemApiResponse } from "../types";
 import { BASE_URL } from "../constants";
@@ -44,7 +45,7 @@ const fetchJobItem =  async (id:number):Promise<JobItemApiResponse> => {
       retry: false,
       enabled: !!id,
       onError: (error: Error) => {
-        console.error('Error:', error.message);
+        toast(error.message)
       },
     });
     return { jobItem: data?.jobItem, loading: isInitialLoading, error: isError } as const;
