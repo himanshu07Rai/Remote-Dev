@@ -90,14 +90,6 @@ function JobContent({ jobItem }: { jobItem: JobItemDetailsType }) {
             </ul>
           </section>
         </div>
-
-        <footer className="job-details__footer">
-          <p className="job-details__footer-text">
-            If possible, please reference that you found the job on{" "}
-            <span className="u-bold">rmtDev</span>, we would really appreciate
-            it!
-          </p>
-        </footer>
       </div>
     </section>
   );

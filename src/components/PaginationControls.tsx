@@ -1,15 +1,9 @@
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { PaginationType } from "../utils/types";
+import { useJobItemsContext } from "../utils/hooks/useJobItemsContext";
 
-export default function PaginationControls({
-  currentPage,
-  handlePageChange,
-  totalPages,
-}: {
-  currentPage: number;
-  handlePageChange: (direction: PaginationType) => void;
-  totalPages: number;
-}) {
+export default function PaginationControls() {
+  const { currentPage, handlePageChange, totalPages } = useJobItemsContext();
   return (
     <section className="pagination">
       {currentPage > 1 && (

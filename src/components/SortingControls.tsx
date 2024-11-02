@@ -1,14 +1,8 @@
+import { useJobItemsContext } from "../utils/hooks/useJobItemsContext";
 import { SortingType } from "../utils/types";
 
-type SortingControlsProps = {
-  handleSorting: (sorting: SortingType) => void;
-  sorting: SortingType;
-};
-
-export default function SortingControls({
-  handleSorting,
-  sorting,
-}: SortingControlsProps) {
+export default function SortingControls() {
+  const { handleSorting, sorting } = useJobItemsContext();
   return (
     <section className="sorting">
       <i className="fa-solid fa-arrow-down-short-wide"></i>

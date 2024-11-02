@@ -3,7 +3,6 @@ import { useBookmarksContext } from "../utils/hooks/useBookmarksContext";
 
 export default function BookmarkIcon({ id }: { id: number }) {
   const { bookmarkedJobs, handleBookmark } = useBookmarksContext();
-  // Check if the job is bookmarked
   const isBookmarked = bookmarkedJobs.includes(id);
   return (
     <button
