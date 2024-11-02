@@ -5,8 +5,10 @@ import Spinner from "./Spinner";
 
 export default function JobItemContent() {
   const activeId = useActiveId();
-  const [jobItem, loading] = useJobItem(activeId);
-  return jobItem ? (
+  const { jobItem, loading } = useJobItem(activeId);
+  return loading ? (
+    <LoadingJobContent />
+  ) : jobItem ? (
     <JobContent jobItem={jobItem} loading={loading} />
   ) : (
     <EmptyJobContent />
@@ -20,7 +22,6 @@ function JobContent({
   jobItem: JobItemDetailsType;
   loading: boolean;
 }) {
-  if (loading) return <LoadingJobContent />;
   return (
     <section className="job-details">
       <div>

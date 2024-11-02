@@ -21,3 +21,7 @@ export type JobItemType = {
     salary: string;
     coverImgURL: string;
   };
+
+  export type JobItemApiResponse = {
+    jobItem: JobItemDetailsType;
+  };
